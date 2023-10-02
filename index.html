@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en-US" data-bs-theme="dark">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Péter Laczó">
+        <meta name="description" content="My homepage made for CS50x - Problem set 8">
+        <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script>
+            // Select a random game for current session
+            document.addEventListener('DOMContentLoaded', function() {
+                games = document.getElementsByClassName("fun");
+                index = Math.floor(Math.random() * games.length)
+                games[index].hidden = false;
+            });
+        </script>
+        <script>
+            // Script for games
+            function getLocation() {
+                btn = document.getElementById("geo-button");
+                res = document.getElementById("geo-result");
+
+                btn.classList.add("disabled");
+                btn.innerHTML = "Loading...";
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(pos) {
+                        res.innerHTML = 'Latitude: ' + pos.coords.latitude + '<br>Longitude: ' + pos.coords.longitude;
+                    });
+                    btn.hidden = "true";
+                } else {
+                    res.innerHTML = 'Geolocation service is not available';
+                }
+            }
+        </script>
+        <script>
+            function watch() {
+                btn = document.getElementById("watch-button");
+                res = document.getElementById("watch-result");
+                window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                btn.classList.add("disabled");
+                btn.innerHTML = "I'm sorry.";
+            }
+        </script>
+
+        <title>Home - My homepage</title>
+    </head>
+
+    <body>
+        <header class="container-fluid p-4 border text-center" id="header">
+            <h1>My homepage</h1>
+        </header>
+        <nav class="navbar navbar-expand-sm bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img src="img/favicon.ico" width="16"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="bio.html">Bio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="gallery.html">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <main class="col-md-9 border p-3">
+                    <section id="welcome">
+                        <h2>Welcome!</h2>
+                        <p>Thank you for visiting this site, I'm so glad you're here!</p>
+                    </section>
+                    <section id="intro">
+                        <h3>What you can do at this place:</h3>
+                        <ul>
+                            <li>Read about me</li>
+                            <li>Check out some of my photos</li>
+                            <li>Find some links to my social media and other profiles</li>
+                            <li>Have some FUN! with random "games" on this page</li>
+                        </ul>
+                        <p class="text-info"><em>I hope you will enjoy your visit!</em> &#x1F913;</p>
+                    </section>
+                </main>
+                <aside class="col-md-3 p-3 border">
+                    <section id="basic-hello">
+                        <h4>Hello, visitor!</h4>
+                        <p>Welcome to my homepage, a website written in
+                            <abbr title="Hyper Text Markup Language" class="initialism">HTML</abbr>,
+                            <abbr title="Cascading Style Sheets" class="initialism">CSS</abbr>, and
+                            <abbr title="JavaScript" class="initialism">JS</abbr> for <a
+                                href="https://cs50.harvard.edu/x/" target="_blank">CS50</a>.
+                        </p>
+                    </section>
+                    <hr>
+                    <section>
+                        <h4>FUN!</h4>
+                        <article class="fun" id="g1" hidden>
+                            <p>Let me guess your location! &#x1F30D;</p>
+                            <button id="geo-button" class="btn btn-success" onclick="getLocation()">Locate me!</button>
+                            <div id="geo-result"></div>
+                        </article>
+                        <article class="fun" id="g2" hidden>
+                            <p>Check out this YouTube video! &#x1F440;</p>
+                            <button id="watch-button" class="btn btn-danger" onclick="watch()">Watch!</button>
+                        </article>
+                        <article class="fun" id="g3" hidden>
+                            <p>No tricks for today. Enjoy your day!</p>
+                            <img src="img/coffee_art.png" width="100%">
+                        </article>
+                    </section>
+                </aside>
+            </div>
+        </div>
+        <footer id="footer" class="container-fluid p-3 text-center border">
+            <p>Copyright &copy; Peter Laczo 2023</p>
+            <p class="small">This site uses the latest <a href="https://getbootstrap.com/">Bootstrap</a> library
+                <i>(v5.3.2)</i>.
+            </p>
+        </footer>
+
+    </body>
+
+</html>
